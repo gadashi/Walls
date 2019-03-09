@@ -1,5 +1,25 @@
 //CONTROL THE EXECUTION
 
+function updateLogic(){
+	//update game time
+	ctrl.time += ctrl.dt;
+
+
+}
+
+function updateGraphics(){
+	cam.Update();
+}
+
+
+
+
+
+
+
+
+
+
 function autoTileChanger(){
 //for testing the possibility to change tiles working :)
 
@@ -37,10 +57,4 @@ function autoBuildingContructor(){
 	else if(tileMap.tiles[x][y].type == "gold"){
 		tileMap.tiles[x][y].constructBuilding(new Mine());
 	}
-}
-
-setInterval(autoCamMove,30);
-function autoCamMove(){
-	cam.moveCam();
-
 }

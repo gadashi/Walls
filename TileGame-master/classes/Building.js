@@ -7,45 +7,31 @@ class Building{
     this.name =name;
     this.prize;
     this.level;
+		this.effect = eval("this." + name + "()" );
 	}
-}
 
-class Wall{
-	constructor(){
-    this.x;
-    this.y;
-    this.hp;
-    this.supportedTile = "grass";
-    this.name ="Wall";
-    this.prize;
-    this.level;
+	upgrade(){
+
 	}
-}
 
-class Tower{
-  constructor(){
-    this.x;
-    this.y;
-    this.hp;
-    this.income;
-    this.supportedTile = "grass";
-    this.name ="Tower";
-    this.prize;
-    this.level;
-    }
-  }
+	Wall(){
+		console.log("build a wall");
+		return 1;
+	}
 
-class Mine{
-  constructor(){
-  this.x;
-  this.y;
-  this.hp;
-  this.income;
-  this.supportedTile = "gold";
-  this.name ="Mine";
-  this.prize;
-  this.level;
-  }
+	Tower(){
+		return 1;
+
+	}
+
+	Mine(){
+		let effects = {
+			income: 5
+		};
+		console.log(effects);
+		return effects;
+
+	}
 }
 
 class Base {

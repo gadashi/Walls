@@ -8,5 +8,6 @@ var can = document.getElementById("can"),
    let tileMap = new TileMap(90,60);
    //create the gamecontroller
    let ctrl = new GameController();
-   //test
-	 
+   //start Updateloop
+	 let gameLoop = setInterval(updateLogic,1/ctrl.dt);
+	 let graphicLoop = setInterval(updateGraphics,1/cam.frameRate);

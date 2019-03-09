@@ -58,7 +58,7 @@ let keyListener = addEventListener ('keydown', function(e){
 			break;
 		case 51: ctrl.selectedBuilding = new Building("Mine","gold");
 			break;
-		case 52: let enm = new Enemy(1,"melee",12,15);//4 
+		case 52: let enm = new Enemy(1,"melee",12,15); ctrl.updateIncome();//4 
 			break;
 		case 57:ctrl.selectedBuilding =null;
 			break;

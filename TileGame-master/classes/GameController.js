@@ -1,8 +1,8 @@
 class GameController{
-
-
-
   constructor(){
+    //time in seconds
+    this.time =0;
+    this.dt = 60/1000;
     //start the game with 100 gold
     this.money = 100;
     this.initializeGame();
@@ -26,6 +26,15 @@ class GameController{
     this.base = tileMap.tiles[x][y];
     }
     console.log(tileMap.tiles[x][y]);
+  }
+
+  updateIncome(){
+    //call every second
+    let incomeInterval = 60;
+    for(let mine of this.mines){
+      this.money += mine.building.effect.income / incomeInterval;
+    }
+    console.log(this.money);
   }
 
   gameOver(){

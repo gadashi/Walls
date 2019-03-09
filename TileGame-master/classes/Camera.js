@@ -3,10 +3,11 @@ class Camera{
 	//should later be used for drawing and moving the camera
 
 	constructor(){
+		this.frameRate = 60;
 		this.x = 87;
 		this.y = 50;
     this.tileSize = 40;
-		this.camSpeed=10;
+		this.camSpeed=200;
 		this.zoomSpeed=1;
     this.dx = 0;
     this.dy = 0;
@@ -14,18 +15,22 @@ class Camera{
 		//this.maxCanSizey = 400;
 	}
 
+	Update(){
+		this.moveCam();
+		this.drawScreen();
+	}
+
 	moveCam(){
     // console.log(this.dx,this.dy,this.x,this.y);
     //visual bugs at border
-		this.x += this.dx * this.camSpeed / this.tileSize * 25;
-		this.y += this.dy * this.camSpeed / this.tileSize * 25;
+		this.x +=  this.dx * this.camSpeed / this.tileSize /this.frameRate * 25;
+		this.y +=  this.dy * this.camSpeed / this.tileSize/ this.frameRate* 25;
     if((this.x < 0 && this.dx<0) || (this.x > tileMap.rows * this.tileSize - can.width && this.dx >0)){
-      this.x -= this.dx * this.camSpeed/this.tileSize * 25;
+      this.x -= this.dx * this.camSpeed/this.tileSize * 25 /this.frameRate;
     }
     if((this.y < 0 && this.dy<0)|| (this.y > tileMap.cols * this.tileSize - (can.height +1) && this.dy>0)){
-      this.y -= this.dy * this.camSpeed/ this.tileSize * 25;
+      this.y -=  this.dy * this.camSpeed/ this.tileSize * 25 /this.frameRate;
     }
-    this.drawScreen();
 	}
 
 	zoomCam(z){
