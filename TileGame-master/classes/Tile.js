@@ -19,15 +19,26 @@ class Tile{
 
     //check for money 'n stuff
     if(building != null){
-		  if(this.building == null && this.type == building.supportedTile){
+			//	console.log(building.effect.prize, ctrl.money);
+		  if(this.building == null && this.type == building.supportedTile
+				&& ctrl.money > building.effect.prize){
+					ctrl.money -= building.effect.prize;
         this.building = building;
 				if(this.building.name == "Mine"){
 					ctrl.mines.push(this);
+					this.building.effect.id = ctrl.mines.length - 1;
+					this.building.build();
 				}
         return true;
 		  }
     } else if ( building == null){
+				ctrl.money += this.building.effect.prize * ctrl.sellPercentage;
+				if(this.building.name == "Mine"){
+					console.log(this.building.genIncome);
+					clearInterval(this.building.genIncome);
+				}
         this.building = null;
+
         return true;
     }
 

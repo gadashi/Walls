@@ -4,13 +4,16 @@ class GameController{
     this.time =0;
     this.dt = 60/1000;
     //start the game with 100 gold
-    this.money = 100;
-    this.initializeGame();
+    this.money = 200;
+    this.sellPercentage = 0.7;
     this.selectedBuilding = null;
     this.enemies = [];
     this.base;
     this.mines = [];
+    this.towers = [];
+    this.walls = [];
     //createEnemies(5);
+
   }
 
   initializeGame(){
@@ -22,20 +25,12 @@ class GameController{
     function map(value, minA, maxA, minB, maxB) { return (1 - ((value - minA) / (maxA - minA))) * minB + ((value - minA) / (maxA - minA)) * maxB; }
     x = Math.floor(map(Math.random(),0,1,tileMap.rows/4,3/4*tileMap.rows));
     y = Math.floor(map(Math.random(),0,1,tileMap.cols/4,3/4*tileMap.cols));
-    success = tileMap.tiles[x][y].constructBuilding(new Base(x,y));
+    success = tileMap.tiles[x][y].constructBuilding(new Building("Base","grass"));
     this.base = tileMap.tiles[x][y];
     }
     console.log(tileMap.tiles[x][y]);
   }
 
-  updateIncome(){
-    //call every second
-    let incomeInterval = 60;
-    for(let mine of this.mines){
-      this.money += mine.building.effect.income / incomeInterval;
-    }
-    console.log(this.money);
-  }
 
   gameOver(){
 

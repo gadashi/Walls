@@ -5,9 +5,16 @@ class Building{
     this.hp;
     this.supportedTile = supportedTile;
     this.name =name;
-    this.prize;
     this.level;
-		this.effect = eval("this." + name + "()" );
+		this.effect =  eval("this." + name + "()" );
+		this.genIncome;
+	}
+
+	build(){
+		 setInterval(this.effect.addIncome,1000);
+		 this.genIncome = nrInterval;
+		 nrInterval++;
+		 console.log(this.genIncome);
 	}
 
 	upgrade(){
@@ -15,42 +22,44 @@ class Building{
 	}
 
 	Wall(){
-		console.log("build a wall");
-		return 1;
+		let effects = {
+			prize: 10
+		};
+		return effects;
 	}
 
 	Tower(){
-		return 1;
-
+		let effects = {
+			prize: 40
+		};
+		return effects;
 	}
 
 	Mine(){
 		let effects = {
-			income: 5
+			id: 0,
+			income: 2,
+			prize: 50,
+			addIncome: function(){ctrl.money+= effects.income;
+		console.log(ctrl.money);
+	}
 		};
-		console.log(effects);
+
 		return effects;
 
 	}
-}
 
-class Base {
-  constructor(){
-    this.x;
-    this.y;
-    this.hp;
-    this.income;
-    this.supportedTile = "grass";
-    this.name ="Base";
-    this.prize;
-    this.level;
-  }
-
-  destroy(){
-    ctrl.gameOver();
-  }
+	Base(){
+		let effects = {
+			prize: 0
+		};
+		return effects;
+	}
 
 }
+
+
+
 
 //class Bridge{}
 //class Gate{}
