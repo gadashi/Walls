@@ -6,7 +6,7 @@ class Camera{
 		this.frameRate = 60;
 		this.x = 87;
 		this.y = 50;
-    this.tileSize = 40;
+    this.tileSize = 35;
 		this.camSpeed=200;
 		this.zoomSpeed=1;
     this.dx = 0;
@@ -21,7 +21,7 @@ class Camera{
 	}
 
 	moveCam(){
-    // console.log(this.dx,this.dy,this.x,this.y);
+    //console.log(this.dx,this.dy,this.x,this.y);
     //visual bugs at border
 		this.x +=  this.dx * this.camSpeed / this.tileSize /this.frameRate * 25;
 		this.y +=  this.dy * this.camSpeed / this.tileSize/ this.frameRate* 25;
@@ -89,9 +89,10 @@ class Camera{
       }
     }
 
+		//draw UI
+		c.font = "30px Arial";
+		c.fillStyle = "black";
+		c.fillText(Math.floor(ctrl.money), 10, 50);
 
   }
-
-
-
 }

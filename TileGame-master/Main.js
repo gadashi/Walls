@@ -3,18 +3,14 @@
 function updateLogic(){
 	//update game time
 	ctrl.time += ctrl.dt;
-
+	//dont update income so often
+	ctrl.updateIncome();
 
 }
 
 function updateGraphics(){
 	cam.Update();
 }
-
-
-
-
-
 
 
 

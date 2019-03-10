@@ -8,43 +8,30 @@ class Tile{
 		this.x = posX;
 		this.y = posY;
 		this.type = type;
-		this.building = null;
+		this.building = new Building("None");
 	}
 
 	changeType(newType){
 		this.type = newType;
 	}
 
-	constructBuilding(building){
-
-    //check for money 'n stuff
-    if(building != null){
-			//	console.log(building.effect.prize, ctrl.money);
-		  if(this.building == null && this.type == building.supportedTile
-				&& ctrl.money > building.effect.prize){
+	constructBuilding(name){
+		let building = new Building(name);
+			if(this.building.name == "None" && this.type == building.supportedTile){
+				if(ctrl.money >= building.effect.prize){
 					ctrl.money -= building.effect.prize;
-        this.building = building;
-				if(this.building.name == "Mine"){
-					ctrl.mines.push(this);
-					this.building.effect.id = ctrl.mines.length - 1;
-					this.building.build();
+					this.building = building;
+					this.building.pTile = this;
+					this.building.effect.onBuild();
+					return true;
 				}
-        return true;
-		  }
-    } else if ( building == null){
+			}
+			else if(building.name == "None" && this.building.name != "Base"){
+				this.building.effect.onDestroy();
 				ctrl.money += this.building.effect.prize * ctrl.sellPercentage;
-				if(this.building.name == "Mine"){
-					console.log(this.building.genIncome);
-					clearInterval(this.building.genIncome);
-				}
-        this.building = null;
-
-        return true;
-    }
-
-    else {
-      return false;
-    }
+				this.building = building;
+			}
+			return false;
 	}
 
   draw(){}

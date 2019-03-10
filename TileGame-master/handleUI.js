@@ -52,15 +52,15 @@ function zoom(e){
 
 let keyListener = addEventListener ('keydown', function(e){
 	switch(e.keyCode){
-		case 49: ctrl.selectedBuilding = new Building("Wall","grass");
+		case 49: ctrl.selectedBuilding = "Wall";
 			break;
-		case 50: ctrl.selectedBuilding = new Building("Tower","grass");
+		case 50: ctrl.selectedBuilding = "Tower";
 			break;
-		case 51: ctrl.selectedBuilding = new Building("Mine","gold");
+		case 51: ctrl.selectedBuilding = "Mine";
 			break;
-		case 52: let enm = new Enemy(1,"melee",12,15); ctrl.updateIncome();//4 
+		case 52: let enm = new Enemy(1,"melee",12,15); ctrl.updateIncome();//4
 			break;
-		case 57:ctrl.selectedBuilding =null;
+		case 57:ctrl.selectedBuilding = "None";
 			break;
     case 87: cam.dy = -1;//w
   		break;
