@@ -22,7 +22,7 @@ class Tile{
 					ctrl.money -= building.effect.prize;
 					this.building = building;
 					this.building.pTile = this;
-					this.building.effect.onBuild();
+					this.building.effect.onBuild(this);
 					return true;
 				}
 			}

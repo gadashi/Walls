@@ -28,7 +28,7 @@ class GameController{
     x = Math.floor(map(Math.random(),0,1,tileMap.rows/4,3/4*tileMap.rows));
     y = Math.floor(map(Math.random(),0,1,tileMap.cols/4,3/4*tileMap.cols));
     success = tileMap.tiles[x][y].constructBuilding("Base");
-    this.base = tileMap.tiles[x][y];
+    this.baseTile = tileMap.tiles[x][y];
     //focus Camera
     cam.x = x * cam.tileSize - can.width/2;
     cam.y = y * cam.tileSize - can.height/2;

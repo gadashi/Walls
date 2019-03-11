@@ -9,9 +9,8 @@ var can = document.getElementById("can"),
    //create the gamecontroller
    let ctrl = new GameController();
 	 ctrl.initializeGame();
-	 //because the intervals are not working correctly: keep global variable that keeps
-	 //track of them by incrementing a counter
-	 let nrInterval = 4;
    //start Updateloop
 	 let gameLoop = setInterval(updateLogic,1/ctrl.dt);
 	 let graphicLoop = setInterval(updateGraphics,1/cam.frameRate);
+	 let enemyLoop = setInterval(updateEnemies,1000/30);
+	 ctrl.enemies.push(new Enemy(1,"melee",10,15));

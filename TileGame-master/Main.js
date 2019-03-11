@@ -11,7 +11,11 @@ function updateLogic(){
 function updateGraphics(){
 	cam.Update();
 }
-
+function updateEnemies(){
+	for(let e of ctrl.enemies){
+		e.update();
+	}
+}
 
 
 

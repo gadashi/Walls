@@ -6,11 +6,12 @@ class Camera{
 		this.frameRate = 60;
 		this.x = 87;
 		this.y = 50;
-    this.tileSize = 35;
+    this.tileSize = 25;
 		this.camSpeed=200;
 		this.zoomSpeed=1;
     this.dx = 0;
     this.dy = 0;
+		this.minTileSize = 12;
 		//this.maxCanSizex = 600;
 		//this.maxCanSizey = 400;
 	}
@@ -34,10 +35,15 @@ class Camera{
 	}
 
 	zoomCam(z){
-		let minTileSize = 12;
 		//changeTilesize
-		this.tileSize -= z / 2.5 * this.zoomSpeed;
-		if(this.tileSize < minTileSize){this.tileSize = minTileSize}
+		let dz= z / 2.5 * this.zoomSpeed;
+		this.tileSize -= dz;
+		if(this.tileSize < this.minTileSize){this.tileSize = this.minTileSize}
+		else{
+			//center now:
+			//let cx= (this.x + can.width/2) / this.tileSize;
+			//let cy= (this.y + can.height/2) / this.tileSize;
+		}
 		//keep the current center
 
 	}
@@ -61,6 +67,13 @@ class Camera{
       c.fillRect(x * this.tileSize - this.x,y * this.tileSize - this.y,this.tileSize,this.tileSize);
 
   }
+
+	drawEnemy(x,y,size){
+		c.beginPath();
+		c.arc(x * this.tileSize - this.x,y * this.tileSize - this.y,size * this.tileSize, 0, 2 * Math.PI);
+		c.fillStyle = "red";
+		c.fill();
+	}
 
 
   //create menu overlay
@@ -88,6 +101,12 @@ class Camera{
 				}
       }
     }
+
+		for(let enm of ctrl.enemies){
+			if(enm.x > startTx && enm.x < maxTx && enm.y > startTy && enm.y < maxTy){
+				this.drawEnemy(enm.x,enm.y,enm.size);
+			}
+		}
 
 		//draw UI
 		c.font = "30px Arial";
