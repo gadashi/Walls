@@ -54,7 +54,7 @@ class Enemy{
   checkColl(){
     let currentTile = tileMap.tiles[Math.floor(this.x)][Math.floo(this.y)];
     if(currentTile.building.name != "None"){
-      //moved on occupied square
+      //moved on occupied sq.type.name
       attackTarget(currentTile);
       return true;
     }

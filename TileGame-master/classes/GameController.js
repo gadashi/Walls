@@ -16,6 +16,8 @@ class GameController{
 
     //createEnemies(5);
 
+    this.baseTile;
+
   }
 
   initializeGame(){

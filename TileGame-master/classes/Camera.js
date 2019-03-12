@@ -6,7 +6,7 @@ class Camera{
 		this.frameRate = 60;
 		this.x = 87;
 		this.y = 50;
-    this.tileSize = 25;
+    this.tileSize = 20;
 		this.camSpeed=200;
 		this.zoomSpeed=1;
     this.dx = 0;
@@ -75,6 +75,10 @@ class Camera{
 		c.fill();
 	}
 
+	drawPath(x,y){
+		c.fillStyle = "cyan";
+		c.fillRect(x * this.tileSize - this.x,y * this.tileSize - this.y,this.tileSize*0.9,this.tileSize*0.9);
+	}
 
   //create menu overlay
   drawSelector(){
@@ -94,7 +98,7 @@ class Camera{
         // console.log(i,j,tileMap.tiles[i][j]);
 				if(i < tileMap.rows && j < tileMap.cols && i>0 && j > 0){
         	let t =  tileMap.tiles[i][j];
-        	this.drawTile(t.x,t.y,t.type);
+        	this.drawTile(t.x,t.y,t.type.name);
 					if(t.building != null){
 						this.drawBuilding(t.x,t.y,t.building.name);
 					}
@@ -108,6 +112,11 @@ class Camera{
 			}
 		}
 
+		for(let path of myPath){
+			if(path.x > startTx && path.x < maxTx && path.y > startTy && path.y < maxTy){
+				this.drawPath(path.x,path.y);
+			}
+		}
 		//draw UI
 		c.font = "30px Arial";
 		c.fillStyle = "black";

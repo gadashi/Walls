@@ -47,14 +47,14 @@ function autoBuildingContructor(){
 	y = Math.floor(Math.random() * tileMap.cols);
 	r = Math.floor(Math.random() * 2);
 
-	if(tileMap.tiles[x][y].type == "grass"){
+	if(tileMap.tiles[x][y].type.name == "grass"){
 		switch(r){
 			case 0: tileMap.tiles[x][y].constructBuilding(new Wall());
 				break;
 			case 1: tileMap.tiles[x][y].constructBuilding(new Tower());
 		}
 	}
-	else if(tileMap.tiles[x][y].type == "gold"){
+	else if(tileMap.tiles[x][y].type.name == "gold"){
 		tileMap.tiles[x][y].constructBuilding(new Mine());
 	}
 }

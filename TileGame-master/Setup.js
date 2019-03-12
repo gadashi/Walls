@@ -9,6 +9,10 @@ var can = document.getElementById("can"),
    //create the gamecontroller
    let ctrl = new GameController();
 	 ctrl.initializeGame();
+
+	 let myPath = findPath(tileMap.tiles[ctrl.baseTile.x][ctrl.baseTile.y],tileMap.tiles[9][15]);
+
+
    //start Updateloop
 	 let gameLoop = setInterval(updateLogic,1/ctrl.dt);
 	 let graphicLoop = setInterval(updateGraphics,1/cam.frameRate);

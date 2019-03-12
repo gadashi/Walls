@@ -12,9 +12,7 @@ class TileMap{
 
 
 	initializeTiles(){
-
 		//have a max canvas size like 500px,600px depending on screen size
-
 		can.width = 900;
 		can.height = 600;
 
@@ -35,22 +33,19 @@ class TileMap{
 				let x = 0, y = 0;
 				x = Math.floor(Math.random() * maxX);
 				y = Math.floor(Math.random() * maxY);
-				if(this.tiles[x][y].type != "gold"){
+				if(this.tiles[x][y].type.name != "gold"){
 					goldSpot = true;
 					this.tiles[x][y].changeType("gold");
 				}
 			}
 		}
-
 	}
-
+	
 	createTile(x,y){
 		//create a specified number of gold Tiles -> sqrt(#tiles)?
 		let r = Math.random();
 		let t = "grass";
 		if(r > 0.8){t = "water";}
 		this.tiles[x].push(new Tile(x,y,t));
-
-
 	}
 }
