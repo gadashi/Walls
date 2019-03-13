@@ -7,19 +7,25 @@ class Node{
     this.x = thisTile.x;
     this.y = thisTile.y;
     this.type = thisTile.type;
-    this.fValue = Math.abs(thisTile.x-startTile.x) + Math.abs(thisTile.y-startTile.y)
-                  + Math.abs(thisTile.x-endTile.x)+Math.abs(thisTile.y-endTile.y)
-    ;
+    this.fValue = this.FValue(thisTile,startTile,endTile);
     this.parent = parent;
     this.walkable = this.Walkable();
     // console.log(this);
   }
 
+  FValue(thisTile,startTile,endTile){
+
+    let gValue = Math.abs(thisTile.x-startTile.x) + Math.abs(thisTile.y-startTile.y);
+    let hValue = 1 * (Math.abs(thisTile.x-endTile.x)+ Math.abs(thisTile.y-endTile.y));
+    let tileSpeedModifier = thisTile.building.effect.tileSpeedModifier;
+    return gValue + hValue + tileSpeedModifier;
+  }
+
   Walkable(){
-      if(this.x <= 0 || this.y <= 0 || this.x >= tileMap.rows ||this.y >= tileMap.cols){
+      if(this.x <= 0 || this.y <= 0 || this.x >= tileMap.rows- 1 ||this.y >= tileMap.cols -1){
         return false;
       }
-      if(this.type.name == "grass" || this.type.name == "gold"){
+      else if(this.type.name == "grass" || this.type.name == "gold"){
         return true;
       }
       return false;
@@ -27,7 +33,7 @@ class Node{
 }
 
 function findPath(startTile,endTile){
-  
+
   openlist.push(new Node(startTile,startTile,endTile,null));
   let x =0;
   while(x < 10000){
@@ -53,7 +59,8 @@ function findPath(startTile,endTile){
          nextElement = path[path.length -1].parent;
          path.push(nextElement);
       }
-      console.log(x);
+      closedlist = [];
+      openlist = [];
       return path;
       break;
     }

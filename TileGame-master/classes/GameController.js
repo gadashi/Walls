@@ -23,19 +23,22 @@ class GameController{
   initializeGame(){
     //create the Base
     let success = false;
-    let x, y;
-    while(!success){
+    let rdm;
 
-    function map(value, minA, maxA, minB, maxB) { return (1 - ((value - minA) / (maxA - minA))) * minB + ((value - minA) / (maxA - minA)) * maxB; }
-    x = Math.floor(map(Math.random(),0,1,tileMap.rows/4,3/4*tileMap.rows));
-    y = Math.floor(map(Math.random(),0,1,tileMap.cols/4,3/4*tileMap.cols));
-    success = tileMap.tiles[x][y].constructBuilding("Base");
-    this.baseTile = tileMap.tiles[x][y];
-    //focus Camera
-    cam.x = x * cam.tileSize - can.width/2;
-    cam.y = y * cam.tileSize - can.height/2;
+    let counter = 0;
+
+    while(!success && counter < 1000){
+      rdm = randomPlace();
+      success = tileMap.tiles[rdm[0]][rdm[1]].constructBuilding("Base");
     }
-    console.log(tileMap.tiles[x][y]);
+    this.baseTile = tileMap.tiles[rdm[0]][rdm[1]];
+    console.log(tileMap.tiles[rdm[0]][rdm[1]]);
+
+    //focus Camera
+    cam.x = rdm[0] * cam.tileSize - can.width/2;
+    cam.y = rdm[1] * cam.tileSize - can.height/2;
+
+    // console.log(tileMap.tiles[rdm[0]][rdm[1]]);
   }
 
   updateIncome(){

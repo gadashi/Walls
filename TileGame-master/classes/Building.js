@@ -1,4 +1,9 @@
 class Building{
+//Idee: alle Gegner laufen zur Basis, Minen und Türme verringern den Wert
+// der FValue vom Pathfinding. So greifen sie automatisch nahe Türme und Minen an
+//increase FValue if it has 3 or more neighbours
+
+
 	constructor(name){
     this.hp;
     this.supportedTile;
@@ -14,6 +19,8 @@ class Building{
 
 	Wall(){
 		let effects = {
+
+			tileSpeedModifier: 20,
 			prize: 10,
 			rCost: 0.03,
 			onBuild: function(pTile){
@@ -28,6 +35,8 @@ class Building{
 
 	Tower(){
 		let effects = {
+
+			tileSpeedModifier: -2,
 			prize: 40,
 			rCost: 0.1,
 			onBuild: function(pTile){
@@ -45,6 +54,7 @@ class Building{
 
 	Mine(){
 		let effects = {
+			tileSpeedModifier: -4,
 			id: 0,
 			income: 2,
 			prize: 80,
@@ -74,6 +84,7 @@ class Building{
 
 	Base(){
 		let effects = {
+			tileSpeedModifier: 0,
 			prize: 0,
 			onBuild: function(pTile){
 			},
@@ -86,6 +97,7 @@ class Building{
 
 	None(){
 		let effects = {
+			tileSpeedModifier: 0,
 			prize: 0,
 			onBuild: function(pTile){},
 			onDestroy: function(killer){

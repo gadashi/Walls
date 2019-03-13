@@ -77,7 +77,7 @@ class Camera{
 
 	drawPath(x,y){
 		c.fillStyle = "cyan";
-		c.fillRect(x * this.tileSize - this.x,y * this.tileSize - this.y,this.tileSize*0.9,this.tileSize*0.9);
+		c.fillRect(x * this.tileSize - this.x,y * this.tileSize - this.y,this.tileSize*0.3,this.tileSize*0.3);
 	}
 
   //create menu overlay
@@ -106,17 +106,19 @@ class Camera{
       }
     }
 
-		for(let enm of ctrl.enemies){
-			if(enm.x > startTx && enm.x < maxTx && enm.y > startTy && enm.y < maxTy){
-				this.drawEnemy(enm.x,enm.y,enm.size);
-			}
-		}
-
 		for(let path of myPath){
 			if(path.x > startTx && path.x < maxTx && path.y > startTy && path.y < maxTy){
 				this.drawPath(path.x,path.y);
 			}
 		}
+
+		for(let enm of ctrl.enemies){
+			if(enm.transform.x > startTx && enm.transform.x < maxTx && enm.transform.y > startTy && enm.transform.y < maxTy){
+				this.drawEnemy(enm.transform.x,enm.transform.y,enm.size);
+			}
+		}
+
+
 		//draw UI
 		c.font = "30px Arial";
 		c.fillStyle = "black";
